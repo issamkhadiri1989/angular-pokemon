@@ -1,0 +1,37 @@
+<form (ngSubmit)="createNewFavoriteList(wishlistName)" #form>
+  <div class="row g-3 align-items-center">
+    <div class="col-auto">
+      <app-control label="Name of the whishlist:">
+        <input
+          type="text"
+          name="whishlist"
+          id="whishlist"
+          #wishlistName
+          placeholder="Enter group name"
+          #whishlistName
+          #input
+        />
+      </app-control>
+    </div>
+
+    <div class="col-auto">
+      <button
+        type="submit"
+        class="btn btn-primary rounded-pill btn-sm ml-3"
+        #btn
+        customButtonComponent
+      >
+        <i class="fa-solid fa-folder-plus"></i> Create
+      </button>
+    </div>
+  </div>
+</form>
+@if (hasFavoriteLists()) {
+  <app-poke-grid />
+} @else {
+  <div class="empty-state">
+    <i class="fa-solid fa-heart-crack"></i>
+    <p>No favorites list yet</p>
+    <small>Create your first wishlist above !</small>
+  </div>
+}

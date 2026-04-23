@@ -1,0 +1,11 @@
+<h2 class="sr-only">My Pokémon Favorites</h2>
+<div class="poke-grid">
+  <h3>{{ currentWhishlist() }}</h3>
+  <div class="row">
+    @for (item of wishlists; track item) {
+      <div class="col-2">
+        <app-poke-grid-item [name]="item" (remove)="removeList($event)" />
+      </div>
+    }
+  </div>
+</div>

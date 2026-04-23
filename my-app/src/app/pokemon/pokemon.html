@@ -1,0 +1,52 @@
+<app-card>
+  <div [class.active]="selected">
+    @if (isFavorite) {
+      <span (click)="addToFavorite()">
+        <i
+          class="fa-solid fa-star"
+          [style]="{
+            position: 'absolute',
+            top: '8px',
+            left: '8px',
+            color: 'gold',
+            fontSize: '18px'
+          }"
+        ></i>
+      </span>
+    } @else {
+      <span (click)="addToFavorite()">
+        <i
+          class="fa-regular fa-star"
+          [style]="{
+            position: 'absolute',
+            top: '8px',
+            left: '8px',
+            fontSize: '18px',
+          }"
+        ></i>
+      </span>
+    }
+
+    <!-- Loupe : coin droit haut -->
+    <span (click)="onSelectPokemon()">
+      <i
+        class="fa-solid fa-magnifying-glass"
+        [style]="{
+          position: 'absolute',
+          top: '8px',
+          right: '8px',
+          fontSize: '18px',
+          cursor: 'pointer',
+        }"
+      >
+      </i>
+    </span>
+
+    <app-cover [image]="monster.img" [alt]="monster.name" />
+    <div class="card-body py-2 px-3">
+      <small class="text-muted" style="font-family: monospace">#{{ monster.id }}</small>
+      <h6 class="card-title mb-1 mt-1" (click)="onSelectPokemon()">{{ monster.name }}</h6>
+      <span class="badge rounded-pill" [style]="typeStyle">{{ pokemonType }} </span>
+    </div>
+  </div>
+</app-card>

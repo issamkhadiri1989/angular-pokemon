@@ -1,0 +1,21 @@
+.control label {
+  font-weight: bold;
+}
+
+.control input,
+.control textarea {
+  width: 100%;
+  padding: 0.35rem 1.25rem;
+  border: 1px solid #2C4CC4;
+  border-radius: 200px;
+  font: inherit;
+  font-size: 0.9rem;
+  color: #4f4b53;
+   outline: none;
+}
+
+.control input::placeholder,
+.control textarea::placeholder {
+  color: #2C4CC4;
+  opacity: 1;
+}

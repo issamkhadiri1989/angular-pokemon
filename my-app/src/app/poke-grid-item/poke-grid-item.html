@@ -1,0 +1,19 @@
+<div class="poke-card" tabindex="0">
+  <div class="poke-card-inner">
+    <div class="poke-card-top">
+      <svg class="pokeball-watermark" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="currentColor" stroke-width="5" />
+        <line x1="2" y1="50" x2="98" y2="50" stroke="currentColor" stroke-width="5" />
+        <circle cx="50" cy="50" r="14" fill="currentColor" />
+        <circle cx="50" cy="50" r="8" fill="none" stroke="currentColor" stroke-width="5" />
+      </svg>
+    </div>
+    <div class="poke-card-bottom">
+      <p class="poke-card-name">
+        {{ name }}
+      </p>
+      <div class="poke-card-count">{{ this.getCount(name) }} pokémon</div>
+    </div>
+  </div>
+  <span class="poke-badge" (click)="removeList(name)"> x </span>
+</div>

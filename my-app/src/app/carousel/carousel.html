@@ -1,0 +1,32 @@
+<section class="favorites-section">
+  <div class="favorites-list">
+    <div class="row" [class]="isFavorieListEmpty()">
+      @if (isFavorieListEmpty().empty === true) {
+        <div class="empty-state">
+          <div class="empty-state__icon">
+            <i class="fa-regular fa-star"></i>
+          </div>
+          <p class="empty-state__title">No favorites yet</p>
+          <p class="empty-state__subtitle">Click the star on a Pokémon to add it to your list.</p>
+        </div>
+      } @else {
+        @for (item of favoriteList; track item?.num) {
+          <div class="fav-card col-2 m-3">
+            <button
+              class="fav-remove"
+              title="Retirer des favoris"
+              type="button"
+              (click)="removeFavorite(item?.id!)"
+            >
+              ✕
+            </button>
+            <app-thumbnail [item]="item!" />
+          </div>
+        }
+        <p class="favorites-count">
+          You have : {{ favoriteList.length }} Pokemon in you favorite list
+        </p>
+      }
+    </div>
+  </div>
+</section>

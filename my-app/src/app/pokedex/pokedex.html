@@ -1,0 +1,63 @@
+<h1>Pokedex</h1>
+<app-search (close)="onCancelSearch()" (search)="find($event)" />
+
+<!-- <app-control label="Title: ">
+  <input name="title" id="title" />
+</app-control> -->
+<!--<app-control label="Address: ">
+  <textarea name="address" id="address"></textarea>
+</app-control> -->
+
+<div class="row list-section">
+  <div class="col-12">
+    <ul>
+      @for (item of lists; track item.name) {
+        <li>
+          <app-list-item [data]="item" (refrest)="refreshingList(item.name)" />
+        </li>
+      } @empty {
+        <p>No lists available</p>
+      }
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <app-whishlist (addedToList)="onAddList($event)" />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="row">
+      @for (item of pokemon; track item.id) {
+        <div class="col-2">
+          <app-pokemon
+            [monster]="item"
+            (select)="onSelectPokemon($event)"
+            [selected]="item.id === selectedPokemon"
+            (favorite)="onFavoriteEvent($event)"
+            [isFavorite]="isFavorite(item.id)"
+          />
+        </div>
+      }
+
+      <!-- <div class="col-4" *ngFor="let item of pokemon">
+          <app-pokemon [monster]="item" (select)="onSelectPokemon($event)" />
+        </div>
+    </div> -->
+    </div>
+  </div>
+
+  <!-- <app-datasheet [datasheet]="fetchedPokemon" *ngIf="selectedPokemon; else fallback"/>
+    <ng-template #fallback>
+       <p id="fallback">Select a Pokemon to see more details</p>
+    </ng-template> -->
+
+  @if (selectedPokemon) {
+    <dialog id="show-datasheet" open>
+      <app-datasheet [pokemon]="fetchedPokemon" (close)="closeDatasheet()" />
+    </dialog>
+  }
+</div>

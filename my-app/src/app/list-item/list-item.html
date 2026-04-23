@@ -1,0 +1,62 @@
+<article class="bag-item" [class] ="{
+
+  'bag-selected' : (data().status === 'active'),
+  'bag-not-selected' : (data().status == 'inactive')
+
+}">
+  <div class="bag-thumb-wrap" aria-hidden="true">
+    <div class="trainer-bag">
+      <div class="bag-flap"></div>
+      <div class="bag-pocket"></div>
+      <div class="bag-strap"></div>
+      <div class="bag-buckle"></div>
+    </div>
+
+    <div class="bag-pokeballs">
+      @if (data().pokemons.length > 0) {
+        @for (pokemon of data().pokemons; track pokemon) {
+          <span class="pokeball-icon"></span>
+          <span class="pokeball-icon"></span>
+          <span class="pokeball-icon"></span>
+          <span class="pokeball-icon"></span>
+          <span class="pokeball-icon"></span>
+          <span class="pokeball-icon"></span>
+        }
+      }
+    </div>
+  </div>
+
+  <div class="bag-content">
+    <div class="bag-head">
+      <span class="bag-number">Bag #01</span>
+      <h3 class="bag-name">{{ data().name }} Squad</h3>
+    </div>
+    @if (data().pokemons.length > 0) {
+      <p class="bag-meta">{{ data().pokemons.length }} Pokemon stored</p>
+    } @else {
+      <p class="bag-meta">Empty bag</p>
+    }
+    @if (data().pokemons.length > 0) {
+      <div class="bag-tags" aria-label="Bag details">
+        @for (pokemon of data().pokemons; track pokemon) {
+          <span class="bag-tag">{{ pokemon }}</span>
+        }
+      </div>
+    }
+
+    <div class="bag-actions" style="cursor: pointer; display: flex; gap: 12px; align-items: center">
+      @if (visibility()) {
+        <div class="bag-status bag-status-active" (click)="onToggleVisibility()">
+          <i class="fa-solid fa-eye-slash"></i>
+        </div>
+      } @else {
+        <div class="bag-status bag-status-inactive" (click)="onToggleVisibility()">
+          <i class="fa-solid fa-eye"></i>
+        </div>
+      }
+      <span (click)="onActivateSquad()">
+        <i class="fa-solid fa-check"></i>
+      </span>
+    </div>
+  </div>
+</article>
