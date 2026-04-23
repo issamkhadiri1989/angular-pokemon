@@ -1,0 +1,14 @@
+<div class="backdrop" (click)="closeDialog()"></div>
+<dialog open>
+  <form (ngSubmit)="onSearchSubmit()">
+    <p>
+      <label for="title">Name of the Pokemon: </label>
+      <input type="text" id="title" name="title" [(ngModel)]="term" />
+    </p>
+
+    <p class="actions">
+      <button type="button" (click)="closeDialog()">Cancel</button>
+      <button type="submit">Find</button>
+    </p>
+  </form>
+</dialog>

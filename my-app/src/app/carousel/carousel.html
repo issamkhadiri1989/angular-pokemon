@@ -1,0 +1,25 @@
+<section class="favorites-section">
+  <div class="favorites-list">
+    <div class="row">
+      @for (item of favoriteList; track item?.num) {
+        <div class="fav-card theme-electric col-2 m-3" >
+          <button
+            class="fav-remove"
+            title="Retirer des favoris"
+            type="button"
+            (click)="removeFavorite(item?.id!)"
+          >
+            ✕
+          </button>
+          <div class="fav-img-wrap">
+            <img [src]="item?.img" [alt]="item?.name" />
+          </div>
+          <span class="fav-number">#{{ item?.num }}</span>
+          <span class="fav-name">
+            {{ item?.name }}
+          </span>
+        </div>
+      }
+    </div>
+  </div>
+</section>

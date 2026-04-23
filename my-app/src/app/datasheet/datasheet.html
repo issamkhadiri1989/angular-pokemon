@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="poke-card mx-auto " [class]="theme">
+    <div class="poke-header p-3">
+      <button class="btn-close-poke" (click)="closeDialog()">✕</button>
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <div class="poke-number">#{{ pokemon.num }}</div>
+          <div class="poke-name">
+            {{ pokemon.name }}
+          </div>
+          <div class="d-flex gap-2 mt-2">
+            @for (item of pokemon.type; track item) {
+              <app-pill [type]="item"> {{ item }} </app-pill>
+            }
+          </div>
+        </div>
+        <div class="sprite-wrap">
+          <img [src]="pokemon.img" [alt]="pokemon.name" />
+        </div>
+      </div>
+    </div>
+
+    <div class="p-3">
+      <!-- Info Row -->
+      <div class="row g-2 text-center mb-3">
+        <div class="col-3">
+          <div class="info-label">Height</div>
+          <div class="info-val">
+            {{ pokemon.height }}
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="info-label">Weight</div>
+          <div class="info-val">
+            {{ pokemon.weight }}
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="info-label">Category</div>
+          <div class="d-flex flex-wrap gap-2">
+            @for (category of pokemon.type; track category) {
+              <app-pill [type]="category">{{ category | uppercase }}</app-pill>
+            }
+          </div>
+        </div>
+      </div>
+
+      <hr class="divider" />
+
+      <div class="mb-3">
+        <div class="section-title mb-2">Weakness</div>
+        <div class="d-flex flex-wrap gap-2" [class]="typeClass">
+          @for (weakness of pokemon.weaknesses; track weakness) {
+            <app-pill [type]="weakness">{{ weakness }}</app-pill>
+          }
+        </div>
+      </div>
+
+      <hr class="divider" />
+      <div class="mb-1">
+        <div class="section-title mb-2">Evolution Chain</div>
+        <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
+          @if (pokemon.prev_evolution) {
+            @for (item of previousEvolutions; track item?.num) {
+              <app-evolution [name]="item.name" [num]="item.num" [avatar]="item.img" />
+            }
+          }
+
+          @if (pokemon.next_evolution) {
+            @for (item of nextEvolutions; track item?.num) {
+              <app-evolution [name]="item.name" [num]="item.num" [avatar]="item.img" />
+            }
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
