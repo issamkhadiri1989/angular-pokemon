@@ -1,0 +1,24 @@
+.type-badge {
+  font-size: 12px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.type-fire {
+  background: #ff6b35;
+  color: #fff;
+}
+.type-flying {
+  background: #89aaee;
+  color: #fff;
+}
+
+.move-pill {
+  background: #fff;
+  border: 1.5px solid #f9a825;
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b8790a;
+}

@@ -1,0 +1,42 @@
+<h1>Pokedex</h1>
+<div class="py-2">
+  <button (click)="onStartSearch()" class="btn btn-primary rounded-pill btn-sm">
+    <i class="fa-solid fa-magnifying-glass"></i> search
+  </button>
+</div>
+
+@if (isSearchingPokemon) {
+  <app-search (cancel)="onCancelSearch()" (search)="find($event)" />
+}
+
+<div class="row">
+  <div class="col-6" style="height: 75vh; overflow-y: auto">
+    <div class="row">
+      @for (item of pokemon; track item.id) {
+        <div class="col-4">
+          <app-pokemon
+            [monster]="item"
+            (select)="onSelectPokemon($event)"
+            [selected]="item.id === selectedPokemon"
+            (favorite)="onFavoriteEvent($event)"
+            [isFavorite]="isFavorite(item.id)"
+          />
+        </div>
+      }
+
+      <!-- <div class="col-4" *ngFor="let item of pokemon">
+          <app-pokemon [monster]="item" (select)="onSelectPokemon($event)" />
+        </div> 
+    </div> -->
+    </div>
+  </div>
+  <div class="col-6">
+      @if (selectedPokemon) {
+        <app-datasheet [pokemon]="fetchedPokemon" />
+      }
+      <!-- <app-datasheet [datasheet]="fetchedPokemon" *ngIf="selectedPokemon; else fallback"/>
+    <ng-template #fallback>
+       <p id="fallback">Select a Pokemon to see more details</p>
+    </ng-template> -->
+    </div>
+</div>

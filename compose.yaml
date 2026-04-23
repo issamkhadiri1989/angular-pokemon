@@ -1,0 +1,11 @@
+services:
+  angular:
+    build: .
+    container_name: angular_dev
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./my-app:/app
+    stdin_open: true
+    tty: true
+    command: sh -c "npm install && ng serve --host 0.0.0.0 --port 4200 --poll=2000"
