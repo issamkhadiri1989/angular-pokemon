@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output, signal } from '@angular/core';
 import { Pokemon } from '../pokemon/pokemon';
 import { POKEMON } from '../pokemon-list';
 import { Datasheet } from '../datasheet/datasheet';
@@ -11,10 +11,11 @@ import { Control } from '../shared/control/control';
 import { Whishlist } from '../whishlist/whishlist';
 import { MyList } from '../whishlist/list.model';
 import { ListItem } from '../list-item/list-item';
+import { Carousel } from '../carousel/carousel';
 
 @Component({
   selector: 'app-pokedex',
-  imports: [Pokemon, Datasheet /* NgFor, NgIf */, Search, Control, Whishlist, ListItem],
+  imports: [Pokemon, Datasheet /* NgFor, NgIf */, Search, Control, Whishlist, ListItem, Carousel],
   templateUrl: './pokedex.html',
   styleUrl: './pokedex.css',
 })
@@ -26,6 +27,8 @@ export class Pokedex {
   lists: MyList[] = [];
 
   @Output() close = new EventEmitter<void>();
+
+  private favoritManager = inject(FavoriteHandler);
 
   constructor(
     private catalogManager: PokemonCatalog,
@@ -92,5 +95,10 @@ export class Pokedex {
         };
       }
     });
+  }
+
+
+  onDropFavorite(id: number) {
+    this.favoritManager.toggleFavorite(id);
   }
 }

@@ -2,22 +2,26 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './header/header';
 
-import { Pokedex } from "./pokedex/pokedex";
-import { Carousel } from "./carousel/carousel";
-import { FavoriteHandler } from './pokedex/favorite.service';
+import { Pokedex } from './pokedex/pokedex';
+import { Trainer } from './trainer/trainer';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Header, Pokedex, Carousel],
+  imports: [RouterOutlet, Header, Pokedex, Trainer, FormsModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css'],
 })
 export class App {
   protected readonly title = signal('my-app');
 
-  private favoritManager = inject(FavoriteHandler)
-
-  onDropFavorite(id: number) {
-      this.favoritManager.toggleFavorite(id);
-  }
+  trainerInfo = {
+    name: 'Ash Ketchum',
+    hometown: 'Pallet Town',
+    experienceLevel: 'Master Trainer',
+    partnerPokemon: 'Pikachu',
+    badges: 8,
+    goal: 'Complete the Kanto Pokedex',
+    specialties: ['Battle Strategy', 'Pokemon Bonding', 'Gym Challenges'],
+  };
 }

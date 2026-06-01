@@ -9,6 +9,7 @@ import {
   Output,
   EventEmitter,
   output,
+  Input,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Button } from '../shared/button/button';
@@ -16,10 +17,11 @@ import { WishlistHelper } from './whishlist.service';
 import { PokeGrid } from '../poke-grid/poke-grid';
 import { Control } from '../shared/control/control';
 import { type MyList } from './list.model';
+import { NgClass } from '../../../node_modules/@angular/common/types/_common_module-chunk';
 
 @Component({
   selector: 'app-whishlist',
-  imports: [FormsModule, Button, PokeGrid, Control],
+  imports: [FormsModule, Button, PokeGrid, Control, FormsModule],
   templateUrl: './whishlist.html',
   styleUrl: './whishlist.css',
   standalone: true,
@@ -32,6 +34,8 @@ export class Whishlist implements AfterViewInit, OnInit {
   // @Output() addedToList = new EventEmitter<void>();
   addedToList = output<string>(); // using signal for diverticity
 
+  entreredListName = '';
+
   constructor(private whishlistHelper: WishlistHelper) {}
 
   ngOnInit(): void {
@@ -42,10 +46,10 @@ export class Whishlist implements AfterViewInit, OnInit {
     console.log('AfterViewInit: ', this.formElement().nativeElement);
   }
 
-  createNewFavoriteList(whishListName: HTMLInputElement): void {
+  createNewFavoriteList(/* whishListName: HTMLInputElement */): void {
     // here we are passing the entire DOM element. if we wish to pass only the value
     // we can pass the argument and type it `string`. then in the template we use .value
-    const name = whishListName.value;
+    const name = this.entreredListName.trim();
 
     console.dir('⭐️ Creating a new favorite list: ', name);
     if (name.trim() !== '') {
@@ -53,7 +57,9 @@ export class Whishlist implements AfterViewInit, OnInit {
     }
 
     //this.form?.nativeElement.reset();
-    this.formElement().nativeElement.reset();
+    //this.formElement().nativeElement.reset();
+
+    this.entreredListName = ''; // reset the input value
 
     // emit the name of the list that was added to the parent component
     this.addedToList.emit(name);

@@ -1,6 +1,4 @@
 <h1>Pokedex</h1>
-<app-search (close)="onCancelSearch()" (search)="find($event)" />
-
 <!-- <app-control label="Title: ">
   <input name="title" id="title" />
 </app-control> -->
@@ -28,6 +26,10 @@
   </div>
 </div>
 
+<hr />
+  <app-carousel (drop)="onDropFavorite($event)"></app-carousel>
+
+<app-search (close)="onCancelSearch()" (search)="find($event)" />
 <div class="row">
   <div class="col-12">
     <div class="row">

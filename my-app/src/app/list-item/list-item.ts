@@ -8,7 +8,10 @@ import { Component, input, output, signal } from '@angular/core';
   styleUrls: ['./list-item.css'],
 })
 export class ListItem {
-  data = input.required<MyList>();
+  data = input.required<MyList, MyList>({
+    // alias: 'squad', <-- use this only if you have a good reason to use a different name for the input property, otherwise, it's better to keep it consistent with the property name in the parent component for better readability and maintainability.
+    transform: (value: MyList) => ({ ...value, name: value.name.toUpperCase() }),
+  });
 
   refrest = output(); // just for displaying the new list after deletion, it can be removed if we use a more reactive approach in the parent component
 

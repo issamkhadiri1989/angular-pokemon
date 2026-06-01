@@ -1,0 +1,49 @@
+<section class="trainer-card" aria-labelledby="trainer-name">
+	<div class="trainer-card__hero">
+		<p class="trainer-card__eyebrow">Pokemon Trainer Profile</p>
+		<h2 id="trainer-name">{{ profileModel().name }}</h2>
+		<p class="trainer-card__summary">
+			{{ profileModel().experienceLevel }} from {{ profileModel().hometown }} traveling with
+			{{ profileModel().partnerPokemon }}.
+		</p>
+	</div>
+	<div class="trainer-card__stats">
+		<article class="trainer-stat">
+			<span class="trainer-stat__label">Experience level</span>
+			<strong>{{ profileModel().experienceLevel }}</strong>
+		</article>
+
+		<article class="trainer-stat">
+			<span class="trainer-stat__label">Home town</span>
+			<strong>{{ profileModel().hometown }}</strong>
+		</article>
+
+		<article class="trainer-stat">
+			<span class="trainer-stat__label">Badges earned</span>
+			<strong>{{ profileModel().badges }}</strong>
+		</article>
+	</div>
+
+	<div class="trainer-card__details">
+		<div>
+			<span class="trainer-detail__label">Partner Pokemon</span>
+			<p>{{ profileModel().partnerPokemon }}</p>
+		</div>
+
+		<div>
+			<span class="trainer-detail__label">Current goal</span>
+			<p>{{ profileModel().goal }}</p>
+		</div>
+	</div>
+
+	<div class="trainer-card__specialties">
+		<span class="trainer-detail__label">Trainer strengths</span>
+		<div class="trainer-card__pill-list">
+			@for (specialty of profileModel().specialties; track specialty) {
+				<span class="trainer-pill">{{ specialty }}</span>
+			}
+		</div>
+	</div>
+  <span (click)="revertChanges()"><i class="fa-solid fa-rotate"></i></span>
+</section>
+

@@ -1,7 +1,30 @@
 <app-header></app-header>
 <main class="main">
   <div class="container py-2">
-    <app-carousel (drop)="onDropFavorite($event)"></app-carousel>
+    <app-trainer
+      [(profile)]="trainerInfo"
+      [(profileModel)]="trainerInfo"
+    ></app-trainer>
+
+    <section class="trainer-editor" aria-label="Trainer identity editor">
+      <div class="trainer-editor__header">
+        <p class="trainer-editor__eyebrow">Trainer Console</p>
+        <h2>Update your trainer card</h2>
+      </div>
+
+      <div class="trainer-editor__grid">
+        <label class="trainer-editor__field">
+          <span>Trainer name</span>
+          <input [(ngModel)]="trainerInfo.name" placeholder="Ash Ketchum" />
+        </label>
+
+        <label class="trainer-editor__field">
+          <span>Hometown</span>
+          <input [(ngModel)]="trainerInfo.hometown" placeholder="Pallet Town" />
+        </label>
+      </div>
+    </section>
+
     <app-pokedex></app-pokedex>
     <!--
     <div class="divider" role="separator" aria-label="Divider"></div>

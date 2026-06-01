@@ -1,4 +1,4 @@
-<form (ngSubmit)="createNewFavoriteList(wishlistName)" #form>
+<form (ngSubmit)="createNewFavoriteList()" #form>
   <div class="row g-3 align-items-center">
     <div class="col-auto">
       <app-control label="Name of the whishlist:">
@@ -8,8 +8,8 @@
           id="whishlist"
           #wishlistName
           placeholder="Enter group name"
-          #whishlistName
-          #input
+          {# #whishlistName   #input #}
+          [(ngModel)]="entreredListName"
         />
       </app-control>
     </div>
